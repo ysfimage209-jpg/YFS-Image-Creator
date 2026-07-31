@@ -1,11 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>YFS AI Create · Premium Image Generator</title>
+  <!-- Styles & scripts (external only) -->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <!-- Sticky header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">YFS AI CREATE</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-outline" aria-label="Sign in">Sign in</button>
+        <button class="btn-primary" aria-label="Get started">Get started</button>
+      </div>
+    </div>
+  </header>
 
-<script src="script.js"></script>
+  <main>
+    <!-- Hero + generator section -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <h1>Generate <span class="gradient-text">premium AI</span> images in seconds</h1>
+          <p class="hero-sub">YFS AI Create · next‑gen diffusion engine. Transform your prompts into stunning, high‑res visuals.</p>
+          <div class="hero-stats">
+            <span>⚡ 0.8s avg</span>
+            <span>🖼 4K+ styles</span>
+            <span>🌐 120+ countries</span>
+          </div>
+        </div>
+
+        <!-- Generator card (prompt, style, upload, generate) -->
+        <div class="generator-card">
+          <div class="card-header">
+            <span class="badge">✨ v2.5</span>
+            <span class="card-title">Create now</span>
+          </div>
+
+          <div class="input-group">
+            <label for="promptInput" class="sr-only">Prompt</label>
+            <textarea id="promptInput" rows="2" placeholder="Describe your vision… e.g. 'cyberpunk samurai, neon rain, volumetric fog'"></textarea>
+            <button class="btn-upload" id="uploadBtn" aria-label="Upload image">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>Upload</span>
+            </button>
+          </div>
+
+          <div class="style-selector">
+            <label for="styleSelect" class="sr-only">Style</label>
+            <select id="styleSelect">
+              <option value="cinematic">🎬 Cinematic</option>
+              <option value="anime" selected>🌸 Anime</option>
+              <option value="realistic">🌿 Realistic</option>
+              <option value="fantasy">🐉 Fantasy</option>
+              <option value="cyberpunk">💠 Cyberpunk</option>
+              <option value="watercolor">🎨 Watercolor</option>
+              <option value="3drender">🧊 3D render</option>
+              <option value="pixelart">👾 Pixel art</option>
+            </select>
+            <span class="style-hint">Style</span>
+          </div>
+
+          <div class="action-row">
+            <button class="btn-generate" id="generateBtn">
+              <span class="btn-text">Generate</span>
+              <span class="btn-icon">→</span>
+            </button>
+            <span class="credit-badge">⚡ 1 credit</span>
+          </div>
+
+          <!-- Loading area (hidden by default, shown via JS) -->
+          <div id="loadingArea" class="loading-area" style="display: none;">
+            <div class="loader"></div>
+            <p class="loading-text">YFS is creating…</p>
+            <span class="loading-progress">0%</span>
+          </div>
+
+          <!-- Image preview section (hidden until generated) -->
+          <div id="imagePreview" class="image-preview" style="display: none;">
+            <img id="previewImg" src="#" alt="AI generated preview">
+            <div class="preview-actions">
+              <button class="btn-icon-only" aria-label="Download">⬇</button>
+              <button class="btn-icon-only" aria-label="Copy">⎘</button>
+              <button class="btn-icon-only" aria-label="Share">↗</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Creations gallery -->
+    <section id="gallery" class="gallery-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Recent Creations</h2>
+          <span class="section-sub">by the YFS community</span>
+        </div>
+        <div class="gallery-grid" id="recentGallery">
+          <!-- Placeholder cards – will be replaced/refreshed by JS -->
+          <figure class="gallery-card"><img src="#" alt="creation 1" loading="lazy"><figcaption>Neon dream</figcaption></figure>
+          <figure class="gallery-card"><img src="#" alt="creation 2" loading="lazy"><figcaption>Cyber city</figcaption></figure>
+          <figure class="gallery-card"><img src="#" alt="creation 3" loading="lazy"><figcaption>Ethereal forest</figcaption></figure>
+          <figure class="gallery-card"><img src="#" alt="creation 4" loading="lazy"><figcaption>Steampunk airship</figcaption></figure>
+          <figure class="gallery-card"><img src="#" alt="creation 5" loading="lazy"><figcaption>Galactic rose</figcaption></figure>
+          <figure class="gallery-card"><img src="#" alt="creation 6" loading="lazy"><figcaption>Abstract flux</figcaption></figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer with social icons -->
+  <footer id="contact" class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <span class="logo-text">YFS AI CREATE</span>
+        <p class="footer-tagline">Premium AI image generation · next‑gen creativity.</p>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Twitter" class="social-link">🐦</a>
+        <a href="#" aria-label="Instagram" class="social-link">📸</a>
+        <a href="#" aria-label="YouTube" class="social-link">▶</a>
+        <a href="#" aria-label="Discord" class="social-link">💬</a>
+        <a href="#" aria-label="GitHub" class="social-link">🐙</a>
+      </div>
+      <div class="footer-legal">
+        <small>© 2026 YFS AI Create. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- hidden file input for upload -->
+  <input type="file" id="fileInput" accept="image/*" style="display: none" aria-hidden="true">
 </body>
 </html>
